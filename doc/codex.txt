@@ -1,0 +1,28 @@
+
+*codex.txt*    Codex: code ask/edit/doc inside Neovim.
+
+USAGE                                                        *codex-usage*
+  :CodexAsk [prompt]    Ask Codex (uses visual selection as context if present)
+  :CodexEdit [instr]    Rewrite the VISUAL selection per instruction
+  :CodexDoc             Insert a docstring/comment block above cursor
+
+DEFAULT MAPPINGS                                             *codex-maps*
+  <leader>ca   CodexAsk
+  <leader>ce   CodexEdit (visual)
+  <leader>cd   CodexDoc
+
+SETUP (Lua)                                                  *codex-setup*
+> lua
+  require("codex").setup({
+    base_url = "https://api.openai.com",
+    model = "gpt-4o-mini",
+    api_key_env = "OPENAI_API_KEY",
+    http = { timeout_ms = 90000 },
+    context = { include_git_diff = true, include_filename = true, max_context_chars = 12000 },
+  })
+<
+
+REQUIREMENTS                                                 *codex-req*
+  - Neovim 0.9+
+  - curl in PATH
+  - API key in $OPENAI_API_KEY (or set api_key_env)
