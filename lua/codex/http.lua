@@ -36,6 +36,12 @@ local function decode_once(s)
 end
 
 function H.chat(messages, cb)
+	-- Preflight: require an API key before attempting the request
+	local key_env = cfg.current.api_key_env or "OPENAI_API_KEY"
+	local key_val = env(key_env)
+	if not key_val or key_val == "" then
+		return cb(("Missing API key in $%s. Set it (e.g., export %s=...) or configure require('codex').setup({ api_key_env = '...' }). Then run :checkhealth codex."):format(key_env, key_env))
+	end
 	local url = (cfg.current.base_url:gsub("/+$", "")) .. "/v1/chat/completions"
 	local payload = {
 		model = cfg.current.model,

@@ -26,3 +26,10 @@ REQUIREMENTS                                                 *codex-req*
   - Neovim 0.9+
   - curl in PATH
   - API key in $OPENAI_API_KEY (or set api_key_env)
+
+API KEY                                                     *codex-apikey*
+  - Set your key in the shell environment so Neovim can read it:
+    - Temporary:  OPENAI_API_KEY=sk-... nvim
+    - Persistent: add `export OPENAI_API_KEY=sk-...` to your shell profile (e.g. ~/.zshrc)
+  - Verify inside Neovim: :checkhealth codex (reports if the key is found)
+  - If using a GUI, ensure it inherits the environment or set the variable in the GUI’s config.

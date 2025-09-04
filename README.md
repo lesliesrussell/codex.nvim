@@ -16,3 +16,12 @@ Terse, fast Neovim interface to Codex-style chat/edit/doc flows.
     })
   end
 }
+```
+
+## API Key
+
+- Set `OPENAI_API_KEY` in your shell environment (or change `api_key_env`):
+  - Temporary: `OPENAI_API_KEY=sk-... nvim` (single run)
+  - Persistent (zsh): add `export OPENAI_API_KEY=sk-...` to `~/.zshrc`, then `source ~/.zshrc`
+- Verify inside Neovim: `:checkhealth codex` (should report the key is found)
+- If launching Neovim from a GUI, ensure the GUI inherits your shell env or set the variable in the GUI’s env.
